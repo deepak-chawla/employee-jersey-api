@@ -3,11 +3,11 @@ package com.example.jerseyserver.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "employee")
+@Table(name = "employees")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+    @Column(name = "employee_id")
     private int id;
 
     @Column
@@ -16,11 +16,7 @@ public class Employee {
     @Column
     private String name;
 
-    public Employee(int id, int code, String name) {
-        this.id = id;
-        this.code = code;
-        this.name = name;
-    }
+
 
     public int getId() {
         return id;
