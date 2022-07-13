@@ -8,13 +8,19 @@ import org.hibernate.Session;
 
 public class EmployeeDAO {
 
-
-    public List<Employee> getEmployees(){
+    public List<Employee> getEmployees() {
         Session session = SessionUtil.getSession();
         Query query = session.createQuery("from Employee");
-        List<Employee> employees =  query.list();
+        List<Employee> employees = query.list();
         session.close();
         return employees;
     }
 
+    public void addEmployee(Employee employee) {
+        Session session = SessionUtil.getSession();
+        session.beginTransaction();
+        session.save(employee);
+        session.getTransaction().commit();
+        session.close();
+    }
 }
