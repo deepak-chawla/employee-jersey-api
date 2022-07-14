@@ -13,5 +13,7 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
         <!-- Annotated entity classes -->
         <mapping class="com.example.jerseyserver.entity.Employee"/>
+        <mapping class="com.example.jerseyserver.entity.Task"/>
+
     </session-factory>
 </hibernate-configuration>

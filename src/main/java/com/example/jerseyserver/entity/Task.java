@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -18,10 +19,12 @@ public class Task {
 
     @Column(name = "task_name")
     private String taskName;
-    private Employee employee;
 
-    @Temporal(TemporalType.DATE)
+    
     private Date date;
+
+    @ManyToOne
+    private Employee employee;
 
     Task() {
         super();
