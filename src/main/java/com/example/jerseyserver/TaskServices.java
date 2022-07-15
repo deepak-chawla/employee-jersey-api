@@ -23,6 +23,13 @@ public class TaskServices {
     @Produces(MediaType.APPLICATION_JSON)
     public Response createTask(Task task){
         task.setTaskName(task.getTaskName());
+        task.setSunday(task.getSunday());
+        task.setMonday(task.getMonday());
+        task.setTuesday(task.getTuesday());
+        task.setWednesday(task.getWednesday());
+        task.setThursday(task.getThursday());
+        task.setFriday(task.getFriday());
+        task.setSaturday(task.getSaturday());
         task.setDate(new Date());
         task.setEmployee(task.getEmployee());
         TaskDAO dao = new TaskDAO();
