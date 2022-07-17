@@ -7,6 +7,15 @@ import com.example.jerseyserver.entity.Task;
 
 
 public class TaskDAO {
+
+    public void updateTask(Task task) {
+        Session session = SessionUtil.getSession();
+        session.beginTransaction();
+        session.update(task);
+        session.getTransaction().commit();
+        session.close();
+    }
+
     public void createTask(Task task) {
         Session session = SessionUtil.getSession();
         session.beginTransaction();
