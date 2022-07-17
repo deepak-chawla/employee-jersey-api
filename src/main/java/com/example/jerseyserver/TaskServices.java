@@ -17,7 +17,7 @@ import com.example.jerseyserver.entity.Task;
 
 @Path("/task")
 public class TaskServices {
-    
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -46,5 +46,5 @@ public class TaskServices {
         List<Task> tasks = taskdao.getEmployeeTasks(emp_id);
         return Response.ok().entity(tasks).header("Access-Control-Allow-Origin", "*").build();
     }
-    
+
 }
