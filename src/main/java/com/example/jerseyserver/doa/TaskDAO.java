@@ -11,7 +11,7 @@ public class TaskDAO {
     public void updateTask(Task task) {
         Session session = SessionUtil.getSession();
         session.beginTransaction();
-        session.update(task);
+        session.saveOrUpdate(task);
         session.getTransaction().commit();
         session.close();
     }
@@ -26,7 +26,8 @@ public class TaskDAO {
 
     public List<Task> getEmployeeTasks(int emp_id) {
         Session session = SessionUtil.getSession();
-        Query<Task> query = session.createQuery("FROM Task WHERE employee_employee_id = :emp_id", Task.class).setParameter("emp_id", emp_id);
+        Query<Task> query = session.createQuery("FROM Task WHERE employee_employee_id = :emp_id", Task.class)
+                .setParameter("emp_id", emp_id);
         List<Task> tasks = query.list();
         session.close();
         return tasks;

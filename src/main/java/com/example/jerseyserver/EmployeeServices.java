@@ -15,7 +15,7 @@ public class EmployeeServices {
     public Response getEmployee() {
         EmployeeDAO dao = new EmployeeDAO();
         List<Employee> employees = dao.getEmployees();
-        return Response.ok().entity(employees).header("Access-Control-Allow-Origin", "*").build();
+        return Response.ok().entity(employees).build();
     }
 
     @POST
@@ -26,7 +26,7 @@ public class EmployeeServices {
         emp.setName(emp.getName());
         EmployeeDAO dao = new EmployeeDAO();
         dao.addEmployee(emp);
-        return Response.ok().entity("Successfully Created.").header("Access-Control-Allow-Origin", "*").build();
+        return Response.ok().entity("Successfully Created.").build();
     }
 
 }

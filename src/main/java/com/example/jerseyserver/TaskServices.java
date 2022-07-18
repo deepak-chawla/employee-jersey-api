@@ -12,8 +12,6 @@ import com.example.jerseyserver.entity.Task;
 
 @Path("/task")
 public class TaskServices {
-
-
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -26,9 +24,11 @@ public class TaskServices {
         task.setThursday(task.getThursday());
         task.setFriday(task.getFriday());
         task.setSaturday(task.getSaturday());
+        task.setDate(task.getDate());
+        task.setEmployee(task.getEmployee());
         TaskDAO dao = new TaskDAO();
         dao.updateTask(task);
-        return Response.status(200).entity("Task Updated.").header("Access-Control-Allow-Origin", "*").build();
+        return Response.ok().entity(task).build();
     }
 
     @POST
@@ -47,7 +47,7 @@ public class TaskServices {
         task.setEmployee(task.getEmployee());
         TaskDAO dao = new TaskDAO();
         dao.createTask(task);
-        return Response.status(201).entity("Task Successfully Created.").header("Access-Control-Allow-Origin", "*").build();
+        return Response.status(201).entity("Task Successfully Created.").build();
     }
 
     @Path("/{emp_id}")
@@ -57,7 +57,7 @@ public class TaskServices {
     public Response getEmployeeTasks(@PathParam("emp_id") int emp_id){
         TaskDAO taskdao = new TaskDAO();
         List<Task> tasks = taskdao.getEmployeeTasks(emp_id);
-        return Response.ok().entity(tasks).header("Access-Control-Allow-Origin", "*").build();
+        return Response.ok().entity(tasks).build();
     }
 
 }
