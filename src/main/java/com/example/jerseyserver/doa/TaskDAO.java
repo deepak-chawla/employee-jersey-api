@@ -26,7 +26,7 @@ public class TaskDAO {
 
     public List<Task> getEmployeeTasks(int emp_id) {
         Session session = SessionUtil.getSession();
-        Query<Task> query = session.createQuery("FROM Task WHERE employee_employee_id = :emp_id", Task.class)
+        Query<Task> query = session.createQuery("from Task where employee_employee_id = :emp_id", Task.class)
                 .setParameter("emp_id", emp_id);
         List<Task> tasks = query.list();
         session.close();
