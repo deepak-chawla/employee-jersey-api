@@ -32,4 +32,12 @@ public class TaskDAO {
         session.close();
         return tasks;
     }
+
+    public List<Task> getTasks() {
+        Session session = SessionUtil.getSession();
+        Query<Task> query = session.createQuery("from Task", Task.class);
+        List<Task> tasks = query.list();
+        session.close();
+        return tasks;
+    }
 }

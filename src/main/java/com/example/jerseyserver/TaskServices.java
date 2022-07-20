@@ -7,7 +7,9 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.example.jerseyserver.doa.EmployeeDAO;
 import com.example.jerseyserver.doa.TaskDAO;
+import com.example.jerseyserver.entity.Employee;
 import com.example.jerseyserver.entity.Task;
 
 @Path("/task")
@@ -57,6 +59,15 @@ public class TaskServices {
     public Response getEmployeeTasks(@PathParam("emp_id") int emp_id){
         TaskDAO taskdao = new TaskDAO();
         List<Task> tasks = taskdao.getEmployeeTasks(emp_id);
+        return Response.ok().entity(tasks).build();
+    }
+
+    @Path("/tasks")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getTasks() {
+        TaskDAO dao = new TaskDAO();
+        List<Task> tasks = dao.getTasks();
         return Response.ok().entity(tasks).build();
     }
 
