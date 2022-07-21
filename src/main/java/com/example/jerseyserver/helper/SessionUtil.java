@@ -1,4 +1,4 @@
-package com.example.jerseyserver.doa;
+package com.example.jerseyserver.helper;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

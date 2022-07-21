@@ -1,4 +1,4 @@
-package com.example.jerseyserver;
+package com.example.jerseyserver.helper;
 
 import java.io.IOException;
 

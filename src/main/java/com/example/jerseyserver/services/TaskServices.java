@@ -1,4 +1,4 @@
-package com.example.jerseyserver;
+package com.example.jerseyserver.services;
 
 import java.util.Date;
 import java.util.List;

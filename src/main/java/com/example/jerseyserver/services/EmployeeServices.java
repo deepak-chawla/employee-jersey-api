@@ -1,4 +1,4 @@
-package com.example.jerseyserver;
+package com.example.jerseyserver.services;
 
 import com.example.jerseyserver.doa.EmployeeDAO;
 import com.example.jerseyserver.entity.Employee;
