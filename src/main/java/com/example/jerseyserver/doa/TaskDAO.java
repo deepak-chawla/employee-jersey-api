@@ -1,5 +1,8 @@
 package com.example.jerseyserver.doa;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import com.example.jerseyserver.helper.SessionUtil;
@@ -18,18 +21,15 @@ public class TaskDAO {
         session.close();
     }
 
-    public void createTask(Task task) {
+    public List<Task> getEmployeeTasks(int emp_id, String sdate, String eDate) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = sdf.parse(sdate);
+        Date endDate = sdf.parse(eDate);
         Session session = SessionUtil.getSession();
-        session.beginTransaction();
-        session.save(task);
-        session.getTransaction().commit();
-        session.close();
-    }
-
-    public List<Task> getEmployeeTasks(int emp_id) {
-        Session session = SessionUtil.getSession();
-        Query<Task> query = session.createQuery("from Task where employee_employee_id = :emp_id", Task.class)
-                .setParameter("emp_id", emp_id);
+        Query<Task> query = session.createQuery("from Task where employee_employee_id = :emp_id and date between :startDate and :endDate", Task.class)
+                .setParameter("emp_id",emp_id)
+                .setParameter("startDate",startDate)
+                .setParameter("endDate",endDate);
         List<Task> tasks = query.list();
         session.close();
         return tasks;
