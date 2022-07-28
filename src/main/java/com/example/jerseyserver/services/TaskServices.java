@@ -1,7 +1,6 @@
 package com.example.jerseyserver.services;
 
 import java.text.ParseException;
-import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.*;
@@ -36,6 +35,17 @@ public class TaskServices {
         List<Task> tasks = taskdao.getEmployeeTasks(emp_id ,sDate,eDate);
         return Response.ok().entity(tasks).build();
     }
+
+    @Path("/weekly")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getWeeklyTasks(@QueryParam("startDate") String sDate,
+                                   @QueryParam("endDate") String eDate) throws ParseException {
+        TaskDAO dao = new TaskDAO();
+        List<Task> tasks = dao.getAllWeeklyTasks(sDate,eDate);
+        return Response.ok().entity(tasks).build();
+    }
+
 
     @Path("/tasks")
     @GET

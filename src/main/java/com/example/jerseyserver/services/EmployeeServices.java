@@ -1,12 +1,15 @@
 package com.example.jerseyserver.services;
 
 import com.example.jerseyserver.doa.EmployeeDAO;
+import com.example.jerseyserver.doa.TaskDAO;
 import com.example.jerseyserver.entity.Employee;
+import com.example.jerseyserver.entity.Task;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.HashMap;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Path("/employee")

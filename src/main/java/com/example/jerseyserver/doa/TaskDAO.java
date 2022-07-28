@@ -21,13 +21,26 @@ public class TaskDAO {
         session.close();
     }
 
-    public List<Task> getEmployeeTasks(int emp_id, String sdate, String eDate) throws ParseException {
+    public List<Task> getEmployeeTasks(int emp_id, String sDate, String eDate) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date startDate = sdf.parse(sdate);
+        Date startDate = sdf.parse(sDate);
         Date endDate = sdf.parse(eDate);
         Session session = SessionUtil.getSession();
         Query<Task> query = session.createQuery("from Task where employee_employee_id = :emp_id and date between :startDate and :endDate", Task.class)
                 .setParameter("emp_id",emp_id)
+                .setParameter("startDate",startDate)
+                .setParameter("endDate",endDate);
+        List<Task> tasks = query.list();
+        session.close();
+        return tasks;
+    }
+
+    public List<Task> getAllWeeklyTasks(String sDate, String eDate) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = sdf.parse(sDate);
+        Date endDate = sdf.parse(eDate);
+        Session session = SessionUtil.getSession();
+        Query<Task> query = session.createQuery("from Task where date between :startDate and :endDate", Task.class)
                 .setParameter("startDate",startDate)
                 .setParameter("endDate",endDate);
         List<Task> tasks = query.list();
